@@ -11,6 +11,7 @@ namespace GeekBurger.Products.Controllers
 {
     [Route("api/products")]
 
+
     public class ProductsController : Controller
     {
         private IList<Product> Products = new List<Product>();
