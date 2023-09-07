@@ -1,0 +1,109 @@
+# Arquivos temporários gerados pelo Visual Studio
+.vscode/
+.vs/
+bin/
+obj/
+ProjectName.UserInterface/obj/
+ProjectName.UserInterface/bin/
+ProjectName.Data/obj/
+ProjectName.Data/bin/
+ProjectName.Tests/obj/
+ProjectName.Tests/bin/
+
+ 
+
+# Arquivos de build e publish
+*.dll
+*.exe
+*.pdb
+*.log
+*.zip
+*.nupkg
+*.snupkg
+*.swp
+*.swo
+
+ 
+
+# Diretórios específicos de ferramentas
+_tools/
+_packages/
+
+ 
+
+# Visual Studio Code
+.vscode/
+
+ 
+
+# Dependências geradas pelo NuGet
+packages/
+
+ 
+
+# Logs e arquivos de saída
+*.log
+*.errors
+*.sqlite
+
+ 
+
+# Arquivos de usuário do Visual Studio
+*.suo
+*.user
+*.sln.docstates
+
+ 
+
+# Arquivos de cache e de configuração
+*.swp
+*.swo
+*.swn
+*.swm
+*.swo
+
+ 
+
+# Arquivos de projeto específicos
+/.vscode
+/*.suo
+/*.user
+/*.userprefs
+/*.sln.docstates
+
+ 
+
+# Logs
+*.log
+
+ 
+
+# Arquivos de rastreamento
+*.tmpproj
+*.user
+*.suo
+*.userprefs
+
+ 
+
+# Arquivos de configuração do Rider
+.idea/
+*.sln.iml
+
+ 
+
+# Cache do Rider
+.idea/
+.idea.*
+*.sln.iml
+
+ 
+
+# Cache do Visual Studio
+.vscode/
+.vs2017/
+.vs2019/
+.vs2015/
+*.suo
+*.user
+*.userosscache
