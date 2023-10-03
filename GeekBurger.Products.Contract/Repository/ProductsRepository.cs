@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GeekBurger.Products.Contract.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace GeekBurger.Products.Contract.Repository
         {
             var products = _context.Products?
             .Where(product =>
-                product.StoreName.Equals(storeName,
+                product.Store.Name.Equals(storeName,
                 StringComparison.InvariantCultureIgnoreCase))
             .Include(product => product.Ingredients);
 
