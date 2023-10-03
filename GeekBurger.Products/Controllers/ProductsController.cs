@@ -20,26 +20,26 @@ namespace GeekBurger.Products.Controllers
             var paulistaStore = "Paulista";
             var morumbiStore = "Morumbi";
 
-            var beef = new Ingredient { ItemId = Guid.NewGuid(), Name = "beef" };
-            var pork = new Ingredient { ItemId = Guid.NewGuid(), Name = "pork" };
-            var mustard = new Ingredient { ItemId = Guid.NewGuid(), Name = "mustard" };
-            var ketchup = new Ingredient { ItemId = Guid.NewGuid(), Name = "ketchup" };
-            var bread = new Ingredient { ItemId = Guid.NewGuid(), Name = "bread" };
-            var wBread = new Ingredient { ItemId = Guid.NewGuid(), Name = "whole bread" };
+            var beef = new Item { ItemId = Guid.NewGuid(), Name = "beef" };
+            var pork = new Item { ItemId = Guid.NewGuid(), Name = "pork" };
+            var mustard = new Item { ItemId = Guid.NewGuid(), Name = "mustard" };
+            var ketchup = new Item { ItemId = Guid.NewGuid(), Name = "ketchup" };
+            var bread = new Item { ItemId = Guid.NewGuid(), Name = "bread" };
+            var wBread = new Item { ItemId = Guid.NewGuid(), Name = "whole bread" };
 
             Products = new List<Product>()
     {
         new Product { ProductId = Guid.NewGuid(), Name = "Darth Bacon",
             Image = "hamb1.png", StoreName = paulistaStore,
-            Ingredients = new List<Ingredient> {beef, ketchup, bread }
+            Items = new List<Item> {beef, ketchup, bread }
         },
         new Product { ProductId = Guid.NewGuid(), Name = "Cap. Spork",
             Image = "hamb2.png", StoreName = paulistaStore,
-            Ingredients = new List<Ingredient> { pork, mustard, wBread }
+            Items = new List<Item> { pork, mustard, wBread }
         },
         new Product { ProductId = Guid.NewGuid(), Name = "Beef Turner",
             Image = "hamb3.png", StoreName = morumbiStore,
-            Ingredients = new List<Ingredient> {beef, mustard, bread }
+            Items = new List<Item> {beef, mustard, bread }
         }
     };
         }

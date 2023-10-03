@@ -17,7 +17,7 @@ namespace GeekBurger.Products.Contract.Model
         public Guid ProductId { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
-        public ICollection<Ingredient> Ingredients { get; set; }
-            = new List<Ingredient>();
+        public ICollection<Item> Items { get; set; }
+            = new List<Item>();
     }
 }

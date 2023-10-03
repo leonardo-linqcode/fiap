@@ -29,7 +29,7 @@ namespace GeekBurger.Products.Contract.Repository
             .Where(product =>
                 product.Store.Name.Equals(storeName,
                 StringComparison.InvariantCultureIgnoreCase))
-            .Include(product => product.Ingredients);
+            .Include(product => product.Items);
 
             return products;
         }

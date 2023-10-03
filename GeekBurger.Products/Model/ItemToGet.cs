@@ -1,11 +1,9 @@
-﻿using System;
-namespace GeekBurger.Products.Contract
+﻿namespace GeekBurger.Products.Model
 {
-    public class Ingredient
+
+    public class ItemToGet
     {
         public Guid ItemId { get; set; }
         public string Name { get; set; }
     }
-
 }
-

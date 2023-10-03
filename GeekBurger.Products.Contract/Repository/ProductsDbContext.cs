@@ -18,6 +18,6 @@ namespace GeekBurger.Products.Contract.Repository
         public DbSet<Product> Products { get; set; }
         public DbSet<Store> Stores { get; set; }
 
-        public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<Item> Items { get; set; }
     }
 }

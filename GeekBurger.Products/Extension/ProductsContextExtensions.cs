@@ -12,7 +12,7 @@ namespace GeekBurger.Products.Contract.Extension
     {
         public static void Seed(this ProductsDbContext context)
         {
-            context.Ingredients.RemoveRange(context.Ingredients);
+            context.Items.RemoveRange(context.Items);
             context.Products.RemoveRange(context.Products);
             context.Stores.RemoveRange(context.Stores);
 
