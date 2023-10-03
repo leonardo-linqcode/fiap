@@ -19,6 +19,8 @@ builder.Services
   .AddScoped<IProductsRepository, ProductsRepository>();
 var app = builder.Build();
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+    
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
