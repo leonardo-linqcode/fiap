@@ -45,5 +45,5 @@ void SeedDatabase()
 {
     using var scope = app.Services.CreateScope();
     var productsDbContext = scope.ServiceProvider.GetRequiredService<ProductsDbContext>();
-    productsDbContext.Seed();
+    ProductsContextExtensions.Seed(productsDbContext);
 }

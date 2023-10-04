@@ -13,28 +13,30 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace GeekBurger.Products.Controllers
 {
-    [Route("api/product")]
-    public class ProductController : Controller
+    [Route("api/products")]
+    public class ProductsController : Controller
     {
         private IProductsRepository _productsRepository;
         private IMapper _mapper;
 
-        public ProductController(IProductsRepository productsRepository, IStoreRepository storeRepository, IMapper mapper)
+        public ProductsController(IProductsRepository productsRepository, IMapper mapper)
         {
             _productsRepository = productsRepository;
             _mapper = mapper;
         }
 
-        [HttpGet("{id}", Name = "GetProduct")]
-        public IActionResult GetProduct(Guid id)
+        [HttpGet()]
+        public IActionResult GetProductsByStoreName([FromQuery] string storeName)
         {
-            var product = _productsRepository.GetProductById(id);
+            var productsByStore = _productsRepository.GetProductsByStoreName(storeName).ToList();
 
-            var productToGet = _mapper.Map<ProductToGet>(product);
+            if (productsByStore.Count <= 0)
+                return NotFound("Nenhum dado encontrado");
 
-            return Ok(productToGet);
+            var productsToGet = _mapper.Map<IEnumerable<ProductToGet>>(productsByStore);
+
+            return Ok(productsToGet);
         }
-
         [HttpPost()]
         public IActionResult AddProduct([FromBody] ProductToUpsert productToAdd)
         {
@@ -44,11 +46,11 @@ namespace GeekBurger.Products.Controllers
             var product = _mapper.Map<Product>(productToAdd);
 
             if (product.StoreId == Guid.Empty)
-                return new Helper.UnprocessableEntityResult(ModelState);
+                return new
+                    Helper.UnprocessableEntityResult(ModelState);
 
             _productsRepository.Add(product);
             _productsRepository.Save();
-
             var productToGet = _mapper.Map<ProductToGet>(product);
 
             return CreatedAtRoute("GetProduct",
@@ -56,47 +58,14 @@ namespace GeekBurger.Products.Controllers
                 productToGet);
         }
 
-        [HttpPatch("{id}")]
-        public IActionResult PartiallyUpdateProduct(Guid id, [FromBody] JsonPatchDocument<ProductToUpsert> productPatch)
-        {
-            Product product;
-
-            if (productPatch == null)
-                return BadRequest();
-
-            product = _productsRepository.GetProductById(id);
-
-            if (id == null || product == null)
-            {
-                return NotFound();
-            }
-
-            var productToUpdate = _mapper.Map<ProductToUpsert>(product);
-            productPatch.ApplyTo(productToUpdate);
-
-            product = _mapper.Map(productToUpdate, product);
-
-            if (product.StoreId == Guid.Empty)
-                return new Helper.UnprocessableEntityResult(ModelState);
-
-            _productsRepository.Update(product);
-            _productsRepository.Save();
-
-            var productToGet = _mapper.Map<ProductToGet>(product);
-
-            return CreatedAtRoute("GetProduct",
-                new { id = productToGet.ProductId },
-                productToGet);
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
+        [HttpGet("{id}", Name = "GetProduct")]
+        public IActionResult GetProduct(Guid id)
         {
             var product = _productsRepository.GetProductById(id);
+            var productToGet = _mapper.Map<ProductToGet>(product);
 
-            _productsRepository.Delete(product);
-            _productsRepository.Save();
-            return NoContent();
+            return Ok(productToGet);
         }
+
     }
 }
