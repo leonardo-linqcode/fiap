@@ -10,15 +10,22 @@ namespace GeekBurger.Products.Helper
     {
         public AutoMapperProfile()
         {
-            CreateMap<ProductToUpsert, Product>().AfterMap<MatchStoreFromRepository>();
-            CreateMap<Product, ProductToUpsert>();
-            CreateMap<ItemToUpsert, Item>().AfterMap<MatchItemsFromRepository>();
-            CreateMap<Product, ProductToGet>();
-            CreateMap<Item, ItemToGet>();
-            CreateMap<EntityEntry<Product>, ProductChangedMessage>()
-            .ForMember(dest => dest.Product, opt => opt.MapFrom(src => src.Entity));
-            CreateMap<EntityEntry<Product>, ProductChangedEvent>()
-            .ForMember(dest => dest.Product, opt => opt.MapFrom(src => src.Entity));
+            //CreateMap<ProductToUpsert, Product>().AfterMap<MatchStoreFromRepository>();
+            //CreateMap<Product, ProductToUpsert>();
+            //CreateMap<ItemToUpsert, Item>().AfterMap<MatchItemsFromRepository>();
+            //CreateMap<Product, ProductToGet>();
+            //CreateMap<Item, ItemToGet>();
+            //CreateMap<EntityEntry<Product>, ProductChangedMessage>()
+            //.ForMember(dest => dest.Product, opt => opt.MapFrom(src => src.Entity));
+            //CreateMap<EntityEntry<Product>, ProductChangedEvent>()
+            //.ForMember(dest => dest.Product, opt => opt.MapFrom(src => src.Entity));
+
+
+
+            CreateMap<ProductToUpsert, Product>()
+                .AfterMap<MatchStoreFromRepository>();
+            CreateMap<ItemToUpsert, Item>()
+                .AfterMap<MatchItemsFromRepository>();
         }
     }
 }

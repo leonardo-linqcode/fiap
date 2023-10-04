@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using GeekBurger.Products.Contract;
-using GeekBurger.Products.Contract.Model;
 using GeekBurger.Products.Model;
 using GeekBurger.Products.Repository;
 using System;

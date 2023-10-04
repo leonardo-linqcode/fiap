@@ -11,17 +11,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAutoMapper(typeof(ProductsDbContext));
 
 builder.Services.AddDbContext<ProductsDbContext>
   (o => o.UseInMemoryDatabase("geekburger-products"));
 
 builder.Services
   .AddScoped<IProductsRepository, ProductsRepository>();
+builder.Services
+  .AddScoped<IStoreRepository, StoreRepository>();
 
 //IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 //builder.Services.AddSingleton(mapper);
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+//builder.Services.AddAutoMapper(typeof(ProductsDbContext));
 var app = builder.Build();
 
 
