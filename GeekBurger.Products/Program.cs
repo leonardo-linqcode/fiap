@@ -1,3 +1,7 @@
+using AutoMapper;
+using GeekBurger.Products.Repository;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +11,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+builder.Services.AddDbContext<ProductsDbContext>
+  (o => o.UseInMemoryDatabase("geekburger-products"));
+
+builder.Services
+  .AddScoped<IProductsRepository, ProductsRepository>();
+
+//IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+//builder.Services.AddSingleton(mapper);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -17,7 +33,14 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
-
+SeedDatabase();
 app.MapControllers();
 
 app.Run();
+
+void SeedDatabase()
+{
+    using var scope = app.Services.CreateScope();
+    var productsDbContext = scope.ServiceProvider.GetRequiredService<ProductsDbContext>();
+    productsDbContext.Seed();
+}
