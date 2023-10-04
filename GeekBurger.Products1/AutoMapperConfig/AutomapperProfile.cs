@@ -10,6 +10,10 @@ namespace GeekBurger.Products.AutoMapperConfig
         {
             CreateMap<Product, ProductToGet>();
             CreateMap<Item, ItemToGet>();
+            CreateMap<ProductToUpsert, Product>()
+        .AfterMap<MatchStoreFromRepository>();
+            CreateMap<ItemToUpsert, Item>()
+                .AfterMap<MatchItemsFromRepository>();
         }
     }
 }

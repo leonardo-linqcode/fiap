@@ -1,5 +1,4 @@
-﻿using System;
-namespace GeekBurger.Products.Contract
+﻿namespace GeekBurger.Products.Contract
 {
     public enum ProductState
     {
@@ -7,6 +6,4 @@ namespace GeekBurger.Products.Contract
         Modified = 3,
         Added = 4
     }
-
 }
-

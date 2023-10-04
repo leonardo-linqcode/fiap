@@ -1,4 +1,7 @@
-﻿namespace GeekBurger.Products.Model
+﻿using System;
+using System.Collections.Generic;
+
+namespace GeekBurger.Products.Contract
 {
     public class ProductToGet
     {
@@ -9,5 +12,4 @@
         public List<ItemToGet> Items { get; set; }
         public decimal Price { get; set; }
     }
-
 }
