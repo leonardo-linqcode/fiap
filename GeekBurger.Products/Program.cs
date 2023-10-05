@@ -21,10 +21,6 @@ builder.Services
 builder.Services
   .AddScoped<IStoreRepository, StoreRepository>();
 
-//IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
-//builder.Services.AddSingleton(mapper);
-//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-//builder.Services.AddAutoMapper(typeof(ProductsDbContext));
 var app = builder.Build();
 
 
@@ -36,14 +32,18 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
-SeedDatabase();
 app.MapControllers();
-
+SeedDatabase();
 app.Run();
+
 
 void SeedDatabase()
 {
+    //using var scope = app.Services.CreateScope();
+    //var productsDbContext = scope.ServiceProvider.GetRequiredService<ProductsDbContext>();
+    //ProductsContextExtensions.Seed(productsDbContext);
+
     using var scope = app.Services.CreateScope();
     var productsDbContext = scope.ServiceProvider.GetRequiredService<ProductsDbContext>();
-    ProductsContextExtensions.Seed(productsDbContext);
+    productsDbContext.Seed();
 }
