@@ -45,4 +45,3 @@ void SeedDatabase()
     var productsDbContext = scope.ServiceProvider.GetRequiredService<ProductsDbContext>();
     productsDbContext.Seed();
 }
-
