@@ -1,20 +1,14 @@
 ﻿using AutoMapper;
 using GeekBurger.Products.Contract;
 using GeekBurger.Products.Model;
-using GeekBurger.Products.Repository;
 using Azure.Messaging.ServiceBus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using Azure.Messaging.ServiceBus.Administration;
+using GeekBurger.Products.Contract.Model;
+using GeekBurger.Products.Repository;
 
 namespace GeekBurger.Products.Service
 {

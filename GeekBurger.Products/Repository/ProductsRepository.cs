@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using GeekBurger.Products.Contract;
 using GeekBurger.Products.Contract.Model;
+using GeekBurger.Products.Service;
 using Microsoft.EntityFrameworkCore;
 
 namespace GeekBurger.Products.Repository
 {
     public class ProductsRepository : IProductsRepository
     {
-        private ProductsDbContext _dbContext;
-        
+       private ProductsDbContext _dbContext;
+        private IProductChangedService _productChangedService;
 
-        public ProductsRepository(ProductsDbContext dbContext)
+        public ProductsRepository(ProductsDbContext dbContext, IProductChangedService productChangedService)
         {
             _dbContext = dbContext;
-          
+            _productChangedService = productChangedService;
         }
 
         public Product GetProductById(Guid productId)
@@ -60,7 +61,12 @@ namespace GeekBurger.Products.Repository
 
         public void Save()
         {
-          
+           _productChangedService
+                .AddToMessageList(_dbContext.ChangeTracker.Entries<Product>());
+
+            _dbContext.SaveChanges();
+
+            _productChangedService.SendMessagesAsync();
         }
     }
 }
