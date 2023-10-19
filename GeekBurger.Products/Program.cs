@@ -1,3 +1,4 @@
+using GeekBurger.Products.Helper;
 using GeekBurger.Products.Repository;
 using GeekBurger.Products.Service;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddAutoMapper(typeof(ProductsDbContext));
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 builder.Services.AddDbContext<ProductsDbContext>
   (o => o.UseInMemoryDatabase("geekburger-products"));

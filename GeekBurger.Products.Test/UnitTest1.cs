@@ -48,8 +48,22 @@ public class ProductsControllerUnitTests
         var storeName = "Paulista";
         var productList = new List<Product>() 
         {
-            new Product { Store = new Store { Name = "Paulista" }  }
+            new Product { 
+                Name = "Paulista"
+            }
         };
+
+        // Configurar AutoMapper
+        var config = new MapperConfiguration(cfg =>
+        {
+            cfg.CreateMap<Product, ProductToGet>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
+        });
+
+        var mapper = config.CreateMapper();
+
+        _mapperMock.Setup(m => m.Map<IEnumerable<ProductToGet>>(It.IsAny<IEnumerable<Product>>()))
+            .Returns((IEnumerable<Product> source) => mapper.Map<IEnumerable<ProductToGet>>(source));
 
         _productRepositoryMock.Setup(_ => _.GetProductsByStoreName(storeName)).Returns(productList);
         
@@ -57,7 +71,8 @@ public class ProductsControllerUnitTests
         {
             new ProductToGet 
             {
-                Name = "Paulista"
+                Name = "Paulista",
+                Items = new List<ItemToGet>()
             }
         });
 
